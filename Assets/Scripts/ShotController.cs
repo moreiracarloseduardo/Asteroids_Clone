@@ -88,12 +88,6 @@ public class ShotController : MonoBehaviour
         }
     }
 
-    bool IsBulletOffscreen(GameObject bullet)
-    {
-        // Verifica se o tiro está fora da tela
-        Vector3 viewportPos = Camera.main.WorldToViewportPoint(bullet.transform.position);
-        return (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1);
-    }
 
     bool IsTimeToDespawn(GameObject bullet)
     {

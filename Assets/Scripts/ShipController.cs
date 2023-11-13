@@ -61,4 +61,5 @@ public class ShipController : MonoBehaviour
             currentThrustSpeed = initialThrustSpeed;
         }
     }
+    
 }

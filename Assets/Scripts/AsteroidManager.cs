@@ -7,7 +7,7 @@ public class AsteroidManager : MonoBehaviour
     public GameObject[] asteroidPrefabs; // Lista de asteroides disponíveis
     public int initialAsteroidCount = 3; // Número inicial de asteroides
     public float minAsteroidSpeed = 1f; // Velocidade mínima dos asteroides
-    public float maxAsteroidSpeed = 3f; // Velocidade máxima dos asteroides
+    public float maxAsteroidSpeed = 2f; // Velocidade máxima dos asteroides
 
     void Start()
     {
@@ -24,31 +24,32 @@ public class AsteroidManager : MonoBehaviour
 
     void SpawnRandomAsteroid()
     {
-        // Escolhe um tipo aleatório de asteroide da lista
+        // Choose a random type of asteroid from the list
         GameObject asteroidPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Length)];
 
-        // Obtém a posição aleatória fora da tela
+        // Get the random position off the screen
         Vector2 spawnPosition = GetRandomSpawnPosition();
 
-        // Instancia o asteroide na posição calculada
+        // Instantiate the asteroid at the calculated position
         GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
 
-        // Define uma velocidade aleatória para o asteroide
+        // Set a random speed for the asteroid
         Rigidbody2D asteroidRb = asteroid.GetComponent<Rigidbody2D>();
         float asteroidSpeed = Random.Range(minAsteroidSpeed, maxAsteroidSpeed);
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+        Vector2 randomDirection = GetRandomSpawnDirection(spawnPosition);
         asteroidRb.velocity = randomDirection * asteroidSpeed;
+
+        asteroid.AddComponent<Asteroid>();
     }
 
-    Vector2 GetRandomSpawnDirection()
+    Vector2 GetRandomSpawnDirection(Vector2 spawnPosition)
     {
-        float angle;
+        // Get the direction towards the center of the screen
+        Vector2 centerDirection = -spawnPosition.normalized;
 
-        // Evitar cantos
-        do
-        {
-            angle = Random.Range(0f, 360f);
-        } while ((angle > 30f && angle < 60f) || (angle > 120f && angle < 150f) || (angle > 210f && angle < 240f) || (angle > 300f && angle < 330f));
+        // Add a larger random offset to the direction
+        float offsetAngle = Random.Range(-60f, 60f);
+        float angle = Mathf.Atan2(centerDirection.y, centerDirection.x) * Mathf.Rad2Deg + offsetAngle;
 
         Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
         return direction.normalized;
@@ -61,16 +62,17 @@ public class AsteroidManager : MonoBehaviour
         float halfHeight = mainCamera.orthographicSize;
         float halfWidth = halfHeight * mainCamera.aspect;
 
-        // Definindo uma margem para garantir que os asteroides comecem fora da tela
+        // Defining a margin to ensure that asteroids start off the screen
         float spawnDistance = 2f;
 
-        // Direção aleatória para a posição inicial (não totalmente diagonal)
-        Vector2 spawnDirection = GetRandomSpawnDirection();
+        // Random direction for the initial position (not totally diagonal)
+        Vector2 spawnPosition = new Vector2(Random.Range(-halfWidth, halfWidth), Random.Range(-halfHeight, halfHeight));
+        Vector2 spawnDirection = GetRandomSpawnDirection(spawnPosition);
 
         float spawnX = spawnDirection.x * (halfWidth + spawnDistance) - 1f;
         float spawnY = spawnDirection.y * (halfHeight + spawnDistance) - 1f;
 
-        Vector2 spawnPosition = new Vector2(spawnX, spawnY);
+        spawnPosition = new Vector2(spawnX, spawnY);
 
         return spawnPosition;
     }
