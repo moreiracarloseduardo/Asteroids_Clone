@@ -59,11 +59,11 @@ public class AsteroidManager : MonoBehaviour
 
         if (asteroid.Size == Asteroid.AsteroidSize.Large)
         {
-            SpawnAsteroids(2, Asteroid.AsteroidSize.Medium, asteroid.Speed * 1.4f, destroyedPosition);
+            SpawnAsteroids(2, Asteroid.AsteroidSize.Medium, asteroid.Speed * 2.4f, destroyedPosition);
         }
         else if (asteroid.Size == Asteroid.AsteroidSize.Medium)
         {
-            SpawnAsteroids(2, Asteroid.AsteroidSize.Small, asteroid.Speed * 1.6f, destroyedPosition);
+            SpawnAsteroids(2, Asteroid.AsteroidSize.Small, asteroid.Speed * 2.6f, destroyedPosition);
         }
 
         if (activeAsteroids == 0)

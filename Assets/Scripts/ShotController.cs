@@ -102,7 +102,6 @@ public class ShotController : MonoBehaviour
         {
             if (!bulletPool[i].activeSelf)
             {
-                Debug.Log("Reusing Bullet from Pool");
                 return bulletPool[i];
             }
         }
