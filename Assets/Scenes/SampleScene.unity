@@ -185,7 +185,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -486,14 +486,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e138fd3d8c59aa746b87bab965e3e08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidPrefabs:
+  largeAsteroidPrefabs:
   - {fileID: 4038186740359739958, guid: 886d9007c5b1ee84ba3289f2bd714ed8, type: 3}
   - {fileID: 3080906411646722585, guid: 967c8fda4126a43428aa0b1f8b43086d, type: 3}
   - {fileID: 8459751951200398952, guid: 94a5abf965d3344478d1866d37168625, type: 3}
+  mediumAsteroidPrefabs:
+  - {fileID: 4515815617134462235, guid: c677d3c36838ad54690be513c7470fc9, type: 3}
+  - {fileID: 6550712601918038119, guid: e3e85b075cce5604a95b7b36c8531618, type: 3}
+  - {fileID: 1747471781809026094, guid: cd8ae77e1122d2e4b9da184221aaf282, type: 3}
+  smallAsteroidPrefabs:
+  - {fileID: 7039333511657569343, guid: addd20e249057694fb3d2454d2a2c541, type: 3}
+  - {fileID: 2512551395196156796, guid: 4971f9879f17efd4b9c8891155b73459, type: 3}
+  - {fileID: 1042890627957268260, guid: a46a1900c5e854340a3ba00dc4f526f1, type: 3}
   initialAsteroidCount: 3
-  spawnDistance: 20
   minAsteroidSpeed: 2
   maxAsteroidSpeed: 5
+  initialAsteroidSpeed: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

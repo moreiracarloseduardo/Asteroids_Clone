@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    public AsteroidSize Size { get; set; }
+    public enum AsteroidSize
+    {
+        Large,
+        Medium,
+        Small
+    }
+    public float Speed { get; set; }
     private bool isDestroyed = false;
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -11,7 +19,7 @@ public class Asteroid : MonoBehaviour
         {
             isDestroyed = true;
             Destroy(gameObject);
-            FindObjectOfType<AsteroidManager>().AsteroidDestroyed(); // Incrementa o contador de asteroides destruídos
+            FindObjectOfType<AsteroidManager>().AsteroidDestroyed(this); // Incrementa o contador de asteroides destruídos
         }
     }
 }

@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour
 {
-    public GameObject[] asteroidPrefabs; // Lista de asteroides disponíveis
+    public GameObject[] largeAsteroidPrefabs;
+    public GameObject[] mediumAsteroidPrefabs;
+    public GameObject[] smallAsteroidPrefabs;
     public int initialAsteroidCount = 3; // Número inicial de asteroides
     public float minAsteroidSpeed = 1f; // Velocidade mínima dos asteroides
     public float maxAsteroidSpeed = 2f; // Velocidade máxima dos asteroides
+    public float initialAsteroidSpeed = 1.0f;
 
     private int asteroidsDestroyed = 0;
     private int currentWaveAsteroidCount;
     private bool isWaveInProgress = false;
+    private int totalAsteroidsInWave;
+    private int activeAsteroids;
 
     void Start()
     {
         currentWaveAsteroidCount = initialAsteroidCount;
-        SpawnAsteroids(currentWaveAsteroidCount);
+        totalAsteroidsInWave = currentWaveAsteroidCount * 7;
+        activeAsteroids = 0;
+        SpawnAsteroids(currentWaveAsteroidCount, Asteroid.AsteroidSize.Large, initialAsteroidSpeed);
+    }
+    void SpawnAsteroids(int count, Asteroid.AsteroidSize size, float speed)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Vector2 spawnPosition = GetRandomSpawnPosition();
+            SpawnRandomAsteroid(size, speed, spawnPosition, false);
+            activeAsteroids++;
+        }
     }
     void Update()
     {
@@ -28,44 +44,76 @@ public class AsteroidManager : MonoBehaviour
     IEnumerator StartNextWave()
     {
         isWaveInProgress = true;
-        yield return new WaitForSeconds(3); // Delay de 3 segundos
+        yield return new WaitForSeconds(3);
         asteroidsDestroyed = 0;
-        currentWaveAsteroidCount += 2; // Aumenta o número de asteroides na próxima onda
-        SpawnAsteroids(currentWaveAsteroidCount);
+        currentWaveAsteroidCount += 2;
+        SpawnBigAsteroid(currentWaveAsteroidCount, Asteroid.AsteroidSize.Large, initialAsteroidSpeed, Vector2.zero);
         isWaveInProgress = false;
     }
-    public void AsteroidDestroyed()
+    public void AsteroidDestroyed(Asteroid asteroid)
     {
-        asteroidsDestroyed++;
+        activeAsteroids--;
+
+        if (asteroid.Size == Asteroid.AsteroidSize.Large)
+        {
+            SpawnAsteroids(2, Asteroid.AsteroidSize.Medium, asteroid.Speed * 1.4f);
+        }
+        else if (asteroid.Size == Asteroid.AsteroidSize.Medium)
+        {
+            SpawnAsteroids(2, Asteroid.AsteroidSize.Small, asteroid.Speed * 1.6f);
+        }
+
+        if (activeAsteroids == 0)
+        {
+            currentWaveAsteroidCount += 2;
+            totalAsteroidsInWave = currentWaveAsteroidCount * 7;
+            SpawnAsteroids(currentWaveAsteroidCount, Asteroid.AsteroidSize.Large, initialAsteroidSpeed);
+        }
     }
-    void SpawnAsteroids(int count)
+    void SpawnBigAsteroid(int count, Asteroid.AsteroidSize size, float speed, Vector2 position)
     {
+        bool moveTowardsCenter = (size == Asteroid.AsteroidSize.Large);
         for (int i = 0; i < count; i++)
         {
-            SpawnRandomAsteroid();
+            SpawnRandomAsteroid(size, speed, position, moveTowardsCenter);
+            activeAsteroids++;
         }
     }
 
-    void SpawnRandomAsteroid()
+    void SpawnRandomAsteroid(Asteroid.AsteroidSize size, float speed, Vector2 position, bool moveTowardsCenter)
     {
-        // Choose a random type of asteroid from the list
-        GameObject asteroidPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Length)];
+        GameObject[] prefabs = new GameObject[0];
 
-        // Get the random position off the screen
-        Vector2 spawnPosition = GetRandomSpawnPosition();
+        switch (size)
+        {
+            case Asteroid.AsteroidSize.Large:
+                prefabs = largeAsteroidPrefabs;
+                break;
+            case Asteroid.AsteroidSize.Medium:
+                prefabs = mediumAsteroidPrefabs;
+                break;
+            case Asteroid.AsteroidSize.Small:
+                prefabs = smallAsteroidPrefabs;
+                break;
+        }
 
-        // Instantiate the asteroid at the calculated position
-        GameObject asteroid = Instantiate(asteroidPrefab, spawnPosition, Quaternion.identity);
+        GameObject asteroidPrefab = prefabs[Random.Range(0, prefabs.Length)];
+        GameObject asteroid = Instantiate(asteroidPrefab, position, Quaternion.identity);
+        asteroid.GetComponent<Asteroid>().Size = size;
+        asteroid.GetComponent<Asteroid>().Speed = speed;
 
-        // Set a random speed for the asteroid
         Rigidbody2D asteroidRb = asteroid.GetComponent<Rigidbody2D>();
-        float asteroidSpeed = Random.Range(minAsteroidSpeed, maxAsteroidSpeed);
-        Vector2 randomDirection = GetRandomSpawnDirection(spawnPosition);
-        asteroidRb.velocity = randomDirection * asteroidSpeed;
-
-        asteroid.AddComponent<Asteroid>();
+        Vector2 direction;
+        if (moveTowardsCenter)
+        {
+            direction = GetRandomSpawnDirection(position);
+        }
+        else
+        {
+            direction = Random.insideUnitCircle.normalized;
+        }
+        asteroidRb.velocity = direction * speed;
     }
-
     Vector2 GetRandomSpawnDirection(Vector2 spawnPosition)
     {
         // Get the direction towards the center of the screen

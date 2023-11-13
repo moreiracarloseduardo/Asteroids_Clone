@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2430955979651076900}
   - component: {fileID: 8404206592292542886}
   - component: {fileID: -4389867667590716318}
+  - component: {fileID: -2149519269055870554}
   - component: {fileID: 4627293540982400320}
   m_Layer: 0
   m_Name: AsteroidBig 03
@@ -124,6 +125,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa4bec6f6c17316488511704a3d407a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2149519269055870554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459751951200398952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68d1fe9eb8e16e44971b1dd5475fbc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &4627293540982400320
