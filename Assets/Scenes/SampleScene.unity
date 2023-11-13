@@ -185,7 +185,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -437,6 +437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1056140397}
   - component: {fileID: 1056140398}
+  - component: {fileID: 1056140399}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -473,6 +474,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipPrefab: {fileID: 2487218633398315052, guid: 44c80dc062b9c08458d87013772a6ec3,
     type: 3}
+--- !u!114 &1056140399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056140396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e138fd3d8c59aa746b87bab965e3e08d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPrefabs:
+  - {fileID: 4038186740359739958, guid: 886d9007c5b1ee84ba3289f2bd714ed8, type: 3}
+  - {fileID: 3080906411646722585, guid: 967c8fda4126a43428aa0b1f8b43086d, type: 3}
+  - {fileID: 8459751951200398952, guid: 94a5abf965d3344478d1866d37168625, type: 3}
+  initialAsteroidCount: 3
+  spawnDistance: 20
+  minAsteroidSpeed: 2
+  maxAsteroidSpeed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
