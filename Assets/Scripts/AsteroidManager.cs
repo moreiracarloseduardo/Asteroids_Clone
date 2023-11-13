@@ -23,14 +23,13 @@ public class AsteroidManager : MonoBehaviour
         currentWaveAsteroidCount = initialAsteroidCount;
         totalAsteroidsInWave = currentWaveAsteroidCount * 7;
         activeAsteroids = 0;
-        SpawnAsteroids(currentWaveAsteroidCount, Asteroid.AsteroidSize.Large, initialAsteroidSpeed);
+        SpawnAsteroids(currentWaveAsteroidCount, Asteroid.AsteroidSize.Large, initialAsteroidSpeed, GetRandomSpawnPosition());
     }
-    void SpawnAsteroids(int count, Asteroid.AsteroidSize size, float speed)
+    void SpawnAsteroids(int count, Asteroid.AsteroidSize size, float speed, Vector2 position)
     {
         for (int i = 0; i < count; i++)
         {
-            Vector2 spawnPosition = GetRandomSpawnPosition();
-            SpawnRandomAsteroid(size, speed, spawnPosition, false);
+            SpawnRandomAsteroid(size, speed, position, false);
             activeAsteroids++;
         }
     }
@@ -47,6 +46,8 @@ public class AsteroidManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         asteroidsDestroyed = 0;
         currentWaveAsteroidCount += 2;
+        totalAsteroidsInWave = currentWaveAsteroidCount * 7;
+        activeAsteroids = totalAsteroidsInWave; // Inicializando activeAsteroids
         SpawnBigAsteroid(currentWaveAsteroidCount, Asteroid.AsteroidSize.Large, initialAsteroidSpeed, Vector2.zero);
         isWaveInProgress = false;
     }
@@ -54,20 +55,22 @@ public class AsteroidManager : MonoBehaviour
     {
         activeAsteroids--;
 
+        Vector2 destroyedPosition = asteroid.transform.position;
+
         if (asteroid.Size == Asteroid.AsteroidSize.Large)
         {
-            SpawnAsteroids(2, Asteroid.AsteroidSize.Medium, asteroid.Speed * 1.4f);
+            SpawnAsteroids(2, Asteroid.AsteroidSize.Medium, asteroid.Speed * 1.4f, destroyedPosition);
         }
         else if (asteroid.Size == Asteroid.AsteroidSize.Medium)
         {
-            SpawnAsteroids(2, Asteroid.AsteroidSize.Small, asteroid.Speed * 1.6f);
+            SpawnAsteroids(2, Asteroid.AsteroidSize.Small, asteroid.Speed * 1.6f, destroyedPosition);
         }
 
         if (activeAsteroids == 0)
         {
             currentWaveAsteroidCount += 2;
             totalAsteroidsInWave = currentWaveAsteroidCount * 7;
-            SpawnAsteroids(currentWaveAsteroidCount, Asteroid.AsteroidSize.Large, initialAsteroidSpeed);
+            SpawnAsteroids(currentWaveAsteroidCount, Asteroid.AsteroidSize.Large, initialAsteroidSpeed, GetRandomSpawnPosition());
         }
     }
     void SpawnBigAsteroid(int count, Asteroid.AsteroidSize size, float speed, Vector2 position)
