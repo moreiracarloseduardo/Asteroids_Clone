@@ -131,7 +131,7 @@ TextureImporter:
         width: 81
         height: 113
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,7 +152,7 @@ TextureImporter:
         width: 194
         height: 186
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,7 +173,7 @@ TextureImporter:
         width: 108
         height: 103
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,7 +194,7 @@ TextureImporter:
         width: 65
         height: 67
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,7 +215,7 @@ TextureImporter:
         width: 143
         height: 146
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,6 +223,132 @@ TextureImporter:
       bones: []
       spriteID: 10aeed8ca262d5042a6faa40142139be
       internalID: -343807676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASTEROIDS_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 604
+        width: 195
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf98abbe75bfc454dbd9cfd482fbd0af
+      internalID: -1500719022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASTEROIDS_6
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 596
+        width: 171
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5867d49b34256f24cabb636dfdc2d360
+      internalID: -552924959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASTEROIDS_7
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 446
+        width: 131
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed558c66b0a04d4e8fbdd1869aadf8d
+      internalID: -133268012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASTEROIDS_8
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 458
+        width: 88
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fb7926b99875694a9862285d99c4cad
+      internalID: -1945220221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASTEROIDS_9
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 333
+        width: 50
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b94bfcc221f192644b0ff57ed8cace37
+      internalID: 2034300980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASTEROIDS_10
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 334
+        width: 54
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be6e3ed682aaeab49bc28401adb5720b
+      internalID: -1761173792
       vertices: []
       indices: 
       edges: []
@@ -240,9 +366,15 @@ TextureImporter:
     nameFileIdTable:
       ASTEROIDS_0: 893620834
       ASTEROIDS_1: -664468458
+      ASTEROIDS_10: -1761173792
       ASTEROIDS_2: 1746294455
       ASTEROIDS_3: 1438057343
       ASTEROIDS_4: -343807676
+      ASTEROIDS_5: -1500719022
+      ASTEROIDS_6: -552924959
+      ASTEROIDS_7: -133268012
+      ASTEROIDS_8: -1945220221
+      ASTEROIDS_9: 2034300980
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

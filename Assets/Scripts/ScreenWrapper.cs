@@ -13,24 +13,34 @@ public class ScreenWrapper : MonoBehaviour
     }
 
     void WrapAroundScreen()
+{
+    Vector3 currentPosition = transform.position;
+    Vector3 viewportPosition = Camera.main.WorldToViewportPoint(currentPosition);
+
+    if (viewportPosition.x > 1)
     {
-        Vector3 currentPosition = transform.position;
-        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(currentPosition);
-
-        float margin = 0.1f; // Ajuste este valor conforme necessário
-
-        if (viewportPosition.x > 1 + margin)
-            currentPosition.x = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
-
-        else if (viewportPosition.x < 0 - margin)
-            currentPosition.x = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
-
-        if (viewportPosition.y > 1 + margin)
-            currentPosition.y = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
-
-        else if (viewportPosition.y < 0 - margin)
-            currentPosition.y = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
-
-        transform.position = currentPosition;
+        currentPosition.x = Camera.main.ViewportToWorldPoint(new Vector3(0, viewportPosition.y, viewportPosition.z)).x;
+        currentPosition.y = Camera.main.ViewportToWorldPoint(new Vector3(viewportPosition.x, 1 - viewportPosition.y, viewportPosition.z)).y;
     }
+
+    else if (viewportPosition.x < 0)
+    {
+        currentPosition.x = Camera.main.ViewportToWorldPoint(new Vector3(1, viewportPosition.y, viewportPosition.z)).x;
+        currentPosition.y = Camera.main.ViewportToWorldPoint(new Vector3(viewportPosition.x, 1 - viewportPosition.y, viewportPosition.z)).y;
+    }
+
+    if (viewportPosition.y > 1)
+    {
+        currentPosition.y = Camera.main.ViewportToWorldPoint(new Vector3(viewportPosition.x, 0, viewportPosition.z)).y;
+        currentPosition.x = Camera.main.ViewportToWorldPoint(new Vector3(1 - viewportPosition.x, viewportPosition.y, viewportPosition.z)).x;
+    }
+
+    else if (viewportPosition.y < 0)
+    {
+        currentPosition.y = Camera.main.ViewportToWorldPoint(new Vector3(viewportPosition.x, 1, viewportPosition.z)).y;
+        currentPosition.x = Camera.main.ViewportToWorldPoint(new Vector3(1 - viewportPosition.x, viewportPosition.y, viewportPosition.z)).x;
+    }
+
+    transform.position = currentPosition;
+}
 }
