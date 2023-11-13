@@ -9,11 +9,35 @@ public class AsteroidManager : MonoBehaviour
     public float minAsteroidSpeed = 1f; // Velocidade mínima dos asteroides
     public float maxAsteroidSpeed = 2f; // Velocidade máxima dos asteroides
 
+    private int asteroidsDestroyed = 0;
+    private int currentWaveAsteroidCount;
+    private bool isWaveInProgress = false;
+
     void Start()
     {
-        SpawnAsteroids(initialAsteroidCount);
+        currentWaveAsteroidCount = initialAsteroidCount;
+        SpawnAsteroids(currentWaveAsteroidCount);
     }
-
+    void Update()
+    {
+        if (!isWaveInProgress && asteroidsDestroyed >= currentWaveAsteroidCount)
+        {
+            StartCoroutine(StartNextWave());
+        }
+    }
+    IEnumerator StartNextWave()
+    {
+        isWaveInProgress = true;
+        yield return new WaitForSeconds(3); // Delay de 3 segundos
+        asteroidsDestroyed = 0;
+        currentWaveAsteroidCount += 2; // Aumenta o número de asteroides na próxima onda
+        SpawnAsteroids(currentWaveAsteroidCount);
+        isWaveInProgress = false;
+    }
+    public void AsteroidDestroyed()
+    {
+        asteroidsDestroyed++;
+    }
     void SpawnAsteroids(int count)
     {
         for (int i = 0; i < count; i++)

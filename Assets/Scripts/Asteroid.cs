@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-   void OnTriggerEnter2D(Collider2D other)
+    private bool isDestroyed = false;
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Shot"))
+        if (other.CompareTag("Shot") && !isDestroyed)
         {
-            // Se colidir com um tiro, destrói o asteroide
+            isDestroyed = true;
             Destroy(gameObject);
+            FindObjectOfType<AsteroidManager>().AsteroidDestroyed(); // Incrementa o contador de asteroides destruídos
         }
     }
 }
