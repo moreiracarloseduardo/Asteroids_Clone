@@ -31,19 +31,33 @@ public class ShipController : MonoBehaviour
 
     void HandleThrustInput()
     {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (Input.GetKey(KeyCode.UpArrow))
         {
             currentThrustSpeed += accelerationRate * Time.deltaTime;
-
-            // Limita a velocidade ao máximo
             currentThrustSpeed = Mathf.Clamp(currentThrustSpeed, initialThrustSpeed, maxThrustSpeed);
 
-            // Aplica o impulso
-            GetComponent<Rigidbody2D>().AddForce(transform.up * currentThrustSpeed);
+            // Verifique se a nave está se movendo na direção oposta à aceleração
+            if (Vector2.Dot(rb.velocity, transform.up) < 0)
+            {
+                // Desacelere a nave suavemente
+                rb.velocity *= 0.99f;
+            }
+
+            // Adicione uma força oposta à direção atual da nave para simular atrito
+            rb.AddForce(-rb.velocity * 0.1f);
+
+            rb.AddForce(transform.up * currentThrustSpeed);
+
+            // Verifique se a velocidade excede a velocidade máxima após a força ser aplicada
+            if (rb.velocity.magnitude > maxThrustSpeed)
+            {
+                // Defina a velocidade para a velocidade máxima
+                rb.velocity = rb.velocity.normalized * maxThrustSpeed;
+            }
         }
         else
         {
-            // Se não estiver pressionando, redefine a velocidade para o valor inicial
             currentThrustSpeed = initialThrustSpeed;
         }
     }
