@@ -24,7 +24,6 @@ public class AsteroidManager : MonoBehaviour
         totalAsteroidsInWave = currentWaveAsteroidCount * 7;
         activeAsteroids = 0;
 
-        Debug.Log("Initializing wave. Asteroid count: " + currentWaveAsteroidCount);
 
         SpawnAsteroidsAtRandomPositions(currentWaveAsteroidCount, Asteroid.AsteroidSize.Large, initialAsteroidSpeed);
     }
@@ -36,7 +35,6 @@ public class AsteroidManager : MonoBehaviour
             Vector2 spawnPosition = GetSpawnPositionFromAngle(angle);
             SpawnRandomAsteroid(size, speed, spawnPosition, -spawnPosition.normalized);
         }
-        Debug.Log("Spawned asteroids. Active asteroids: " + activeAsteroids);
     }
     Vector2 GetSpawnPositionFromAngle(float angle)
     {
