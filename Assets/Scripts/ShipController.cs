@@ -67,3 +67,11 @@ public class ShipController : MonoBehaviour
     }
 
 }
+/* Here is the explanation for the code above:
+1. If the player is pressing the Up Arrow key, increase the thrust speed by the acceleration rate over time.
+2. Make sure the thrust speed doesn't exceed the maximum thrust speed.
+3. If the player is pressing the Up Arrow key, and the ship is moving in the opposite direction of the acceleration, slow the ship down.
+4. Add a force opposite to the current direction of the ship to simulate friction.
+5. Add a force in the direction of the ship's current rotation.
+6. If the velocity exceeds the maximum thrust speed after the force is applied, set the velocity to the maximum thrust speed.
+7. If the player is not pressing the Up Arrow key, reset the thrust speed to the initial thrust speed. */

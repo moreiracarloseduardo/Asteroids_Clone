@@ -67,3 +67,9 @@ public class GameManager : MonoBehaviour
     }
 
 }
+/* Here is the explanation for the code above:
+1. The Start method is called when the script is instantiated.
+2. The SpawnShip method instantiates a new nave at the center of the screen.
+3. The PlayerHit method is called when the nave is hit by an asteroid.
+4. The AsteroidDestroyed method is called when an asteroid is destroyed.
+5. The UpdateScoreText method updates the score text with the current score. */

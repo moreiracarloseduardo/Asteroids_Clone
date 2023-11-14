@@ -21,16 +21,21 @@ public class Shot : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Verifica se o projétil colidiu com um asteroide
+        
         if (other.gameObject.CompareTag("Asteroid"))
         {
-            // Desativa o projétil
+           
             this.gameObject.SetActive(false);
 
-            // Instancia o efeito no ponto de colisão
+          
             GameObject effect = EffectManager.Instance.effectPool.Get();
             effect.transform.position = transform.position;
             effect.SetActive(true);
         }
     }
 }
+/* Here is the explanation for the code above:
+1. The code above is the code for the bullet to hit the asteroid.
+2. If the bullet hits the asteroid, then the bullet will be hidden.
+3. When the bullet hits the asteroid, the effect will appear.
+4. The effect will appear where the bullet hits the asteroid. */
