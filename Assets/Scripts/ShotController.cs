@@ -69,6 +69,7 @@ public class ShotController : MonoBehaviour
 
         // Redefine o tempo de spawn do projétil
         newBullet.GetComponent<Shot>().SetSpawnTime(Time.time);
+        SoundManager.Instance.PlayShootSound();
     }
 
     void UpdateBulletPool()

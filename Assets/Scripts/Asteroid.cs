@@ -21,6 +21,18 @@ public class Asteroid : MonoBehaviour
             Destroy(gameObject);
             FindObjectOfType<AsteroidManager>().AsteroidDestroyed(this); // Incrementa o contador de asteroides destruídos
             FindObjectOfType<GameManager>().AsteroidDestroyed(Size);
+            switch (Size)
+            {
+                case AsteroidSize.Large:
+                    SoundManager.Instance.PlayDestructionSoundLarge();
+                    break;
+                case AsteroidSize.Medium:
+                    SoundManager.Instance.PlayDestructionSoundMedium();
+                    break;
+                case AsteroidSize.Small:
+                    SoundManager.Instance.PlayDestructionSoundSmall();
+                    break;
+            }
         }
     }
 }
