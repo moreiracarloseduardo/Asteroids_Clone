@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
     private void UpdateScoreText()
     {
         scoreText.text = score.ToString();
-        Debug.Log(score.ToString());
     }
 
 }

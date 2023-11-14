@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5036d4d88d606147a46b9d75d244e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 180
+  rotationSpeed: 250
   initialThrustSpeed: 1
   maxThrustSpeed: 5
   accelerationRate: 0.2
@@ -143,8 +143,8 @@ MonoBehaviour:
   shotPrefab: {fileID: 2902952610132607231, guid: 3a4a7bcd1698ce54aa1e9128db61cd03,
     type: 3}
   shotSpawnPoint: {fileID: 4865697760286019665}
-  fireInterval: 0.3
-  despawnTime: 1
+  fireInterval: 0.2
+  despawnTime: 1.5
 --- !u!114 &7431742488699762963
 MonoBehaviour:
   m_ObjectHideFlags: 0
