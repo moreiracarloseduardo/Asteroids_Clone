@@ -40,7 +40,7 @@ public class AsteroidManager : MonoBehaviour
     }
     Vector2 GetSpawnPositionFromAngle(float angle)
     {
-        float radius = Mathf.Max(Screen.width, Screen.height);
+        float radius = 15f; // Distância do centro da tela. Ajuste este valor conforme necessário
         return new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * radius;
     }
     void SpawnAsteroids(int count, Asteroid.AsteroidSize size, float speed, Vector2 position, Vector2 direction)
