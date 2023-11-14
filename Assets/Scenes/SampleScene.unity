@@ -708,7 +708,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99999
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -832,6 +832,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipPrefab: {fileID: 2487218633398315052, guid: 44c80dc062b9c08458d87013772a6ec3,
     type: 3}
+  livesUI:
+  - {fileID: 1619776656}
+  - {fileID: 526318246}
+  - {fileID: 1267997875}
+  scoreText: {fileID: 910935994}
+  score: 0
 --- !u!114 &1056140399
 MonoBehaviour:
   m_ObjectHideFlags: 0
