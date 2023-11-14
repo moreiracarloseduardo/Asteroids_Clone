@@ -146,7 +146,7 @@ MonoBehaviour:
     type: 3}
   shotSpawnPoint: {fileID: 4865697760286019665}
   fireInterval: 0.3
-  despawnTime: 1.5
+  despawnTime: 2
 --- !u!114 &7431742488699762963
 MonoBehaviour:
   m_ObjectHideFlags: 0
