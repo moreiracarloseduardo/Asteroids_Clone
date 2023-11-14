@@ -143,7 +143,7 @@ MonoBehaviour:
   shotPrefab: {fileID: 2902952610132607231, guid: 3a4a7bcd1698ce54aa1e9128db61cd03,
     type: 3}
   shotSpawnPoint: {fileID: 4865697760286019665}
-  fireInterval: 0.2
+  fireInterval: 0.5
   despawnTime: 1.5
 --- !u!114 &7431742488699762963
 MonoBehaviour:
