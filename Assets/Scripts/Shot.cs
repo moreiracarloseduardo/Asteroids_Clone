@@ -19,4 +19,13 @@ public class Shot : MonoBehaviour
     {
         spawnTime = time;
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // Verifica se o projétil colidiu com um asteroide
+        if (other.gameObject.CompareTag("Asteroid"))
+        {
+            // Desativa o projétil
+            this.gameObject.SetActive(false);
+        }
+    }
 }
