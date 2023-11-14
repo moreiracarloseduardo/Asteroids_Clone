@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
+    public GameObject accelerationEffect;
+
     public float rotationSpeed = 180f;
     public float initialThrustSpeed = 1f;
     public float maxThrustSpeed = 5f;
     public float accelerationRate = 0.1f;
+
 
     float currentThrustSpeed;
 
@@ -20,6 +23,7 @@ public class ShipController : MonoBehaviour
     {
         HandleRotationInput();
         HandleThrustInput();
+        accelerationEffect.SetActive(Input.GetKey(KeyCode.UpArrow));    
     }
 
     void HandleRotationInput()
@@ -61,5 +65,5 @@ public class ShipController : MonoBehaviour
             currentThrustSpeed = initialThrustSpeed;
         }
     }
-    
+
 }

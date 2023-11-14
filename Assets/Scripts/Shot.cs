@@ -26,6 +26,11 @@ public class Shot : MonoBehaviour
         {
             // Desativa o projétil
             this.gameObject.SetActive(false);
+
+            // Instancia o efeito no ponto de colisão
+            GameObject effect = EffectManager.Instance.effectPool.Get();
+            effect.transform.position = transform.position;
+            effect.SetActive(true);
         }
     }
 }
